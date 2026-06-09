@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body {
+  background: radial-gradient(circle at top left, #e4ece1 0, transparent 34rem), #f8faf7;
+  color: #263238;
+}
+* { -webkit-tap-highlight-color: transparent; }
