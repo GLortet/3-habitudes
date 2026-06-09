@@ -45,13 +45,12 @@ export function generateInsightText(score: HabitScore) {
 }
 
 export function calculateAdherenceRate(checkIns: CheckIn[], commitmentId?: string): number {
-  const values: number[] = checkIns.flatMap((checkIn) => {
+  const values = checkIns.flatMap((checkIn) => {
     if (commitmentId) return checkIn.adherence[commitmentId] ? [adherenceScore[checkIn.adherence[commitmentId]]] : [];
     return Object.values(checkIn.adherence).map((value) => adherenceScore[value]);
   });
   if (!values.length) return 0;
-  const total = values.reduce<number>((sum, value) => sum + value, 0);
-  return Math.round((total / values.length) * 100);
+  return Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 100);
 }
 
 export function calculateWeightTrend(checkIns: CheckIn[], startWeight?: number) {
