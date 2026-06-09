@@ -27,6 +27,6 @@ export function exportState(state: AppState) {
 
 export function importState(json: string): AppState {
   const parsed = JSON.parse(json) as { state?: AppState } | AppState;
-  const state = "state" in parsed && parsed.state ? parsed.state : parsed;
+  const state: AppState = "state" in parsed && parsed.state ? parsed.state : (parsed as AppState);
   return { ...emptyState, ...state, answers: state.answers ?? {}, checkIns: state.checkIns ?? [] };
 }
